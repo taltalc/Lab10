@@ -10,13 +10,14 @@ namespace Triangle
     {
         static void Main(string[] args)
         {
-            Triangle triangle = new Triangle(120, 30, 12);
+            Triangle triangle = new Triangle(120,30, 12);
             triangle.ToRadians();
             Console.ReadKey();
         }
 
     }
-    class Triangle
+    //Мы допускаем, что класс Triangle для  геометрических, а не для тригонометрических объектов.
+    class Triangle 
     {
         int gradus;
         int min;
@@ -26,21 +27,26 @@ namespace Triangle
         {
             set
             {
-                if (value > 0 && value % 1 == 0)
+                if (value >=0 )
                 {
                     gradus = value;
                 }
                 else
                 {
+                   
                     Console.WriteLine("Введено некорректное значение градусов.");
                 }
+            }
+            get
+            {
+                return gradus;
             }
         }
         public int Min
         {
             set
             {
-                if (value > 0 && value % 1 == 0)
+                if (value >=0)
                 {
                     min = value;
                 }
@@ -48,13 +54,20 @@ namespace Triangle
                 {
                     Console.WriteLine("Введено некорректное значение минут.");
                 }
+                min = value % 60;
+                gradus += value / 60;
+
+            }
+            get
+            {
+                return min;
             }
         }
         public int Sec
         {
             set
             {
-                if (value > 0 && value % 1 == 0)
+                if (value >=0)
                 {
                     min = value;
                 }
@@ -62,6 +75,12 @@ namespace Triangle
                 {
                     Console.WriteLine("Введено некорректное значение секунд.");
                 }
+                sec = value % 60;
+                min += value / 60;
+            }
+            get
+            {
+                return sec;
             }
         }
         public Triangle(int gradus, int min, int sec)
@@ -74,8 +93,18 @@ namespace Triangle
         public void ToRadians()
         {
             double radians = 0;
-            radians = (Math.PI * gradus + ((min + sec) / 60) / 60) / 180;
-            Console.WriteLine("Заданный угол в радианах равен {0:f2}", radians);
+            
+            if (gradus>=0&& min >= 0 && sec >= 0 )
+            {
+              radians = (Math.PI * gradus + ((min + sec) / 60) / 60) / 180;
+              Console.WriteLine("Заданный угол в радианах равен {0:f2}", radians);
+                
+            }
+            else
+            { 
+                Console.WriteLine("Epic fail."); 
+            }
+
         }
     }
 }
