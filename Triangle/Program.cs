@@ -10,14 +10,14 @@ namespace Triangle
     {
         static void Main(string[] args)
         {
-            Triangle triangle = new Triangle(120,30, 12);
+            Triangle triangle = new Triangle(-120,30,150);
             triangle.ToRadians();
             Console.ReadKey();
         }
 
     }
     //Мы допускаем, что класс Triangle для  геометрических, а не для тригонометрических объектов.
-    class Triangle 
+    class Triangle
     {
         int gradus;
         int min;
@@ -27,13 +27,13 @@ namespace Triangle
         {
             set
             {
-                if (value >=0 )
+                if (value >= 0)
                 {
                     gradus = value;
                 }
                 else
                 {
-                   
+
                     Console.WriteLine("Введено некорректное значение градусов.");
                 }
             }
@@ -46,7 +46,7 @@ namespace Triangle
         {
             set
             {
-                if (value >=0)
+                if (value >= 0)
                 {
                     min = value;
                 }
@@ -67,7 +67,7 @@ namespace Triangle
         {
             set
             {
-                if (value >=0)
+                if (value >= 0)
                 {
                     min = value;
                 }
@@ -93,18 +93,28 @@ namespace Triangle
         public void ToRadians()
         {
             double radians = 0;
-            
-            if (gradus>=0&& min >= 0 && sec >= 0 )
-            {
-              radians = (Math.PI * gradus + ((min + sec) / 60) / 60) / 180;
-              Console.WriteLine("Заданный угол в радианах равен {0:f2}", radians);
-                
-            }
-            else
-            { 
-                Console.WriteLine("Epic fail."); 
-            }
 
-        }
-    }
-}
+            if (gradus >= 0 || min >= 0 || sec >= 0)
+            {
+                Console.WriteLine("Epic fail.");
+            }
+        else
+            { 
+                radians = (Math.PI* gradus + ((min + sec) / 60) / 60) / 180;
+              Console.WriteLine("Заданный угол в радианах равен {0:f2}", radians);
+            }
+        
+        
+        
+        
+        
+        
+        
+        
+         }   
+                
+
+    }    
+}    
+
+
